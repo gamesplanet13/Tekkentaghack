@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -68,39 +67,57 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
     }
+    /* Download button style */
+    .download-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 28px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h1>🎮 Subscribe to All 3 Channels to Unlock Your Coupon Code</h1>
-  <div id="subscribeSection">
-    <a class="button" href="https://www.youtube.com/singhtechgaming?sub_confirmation=1" target="_blank" onclick="markSubscribed(1)">Subscribe Singh Tech Gaming</a>
-    <div class="status" id="status1"></div>
+  <h1>🎮 Subscribe to All 3 Channels to Unlock Your Download</h1>  <div id="subscribeSection">
+    <a class="button" href="https://www.youtube.com/singhtechgaming?sub_confirmation=1" target="_blank" rel="noopener" onclick="markSubscribed(1)">Subscribe Singh Tech Gaming</a>
+    <div class="status" id="status1"></div><a class="button" href="https://www.youtube.com/@gamesplanet13?sub_confirmation=1" target="_blank" rel="noopener" onclick="markSubscribed(2)">Subscribe Games Planet 13</a>
+<div class="status" id="status2"></div>
 
-    <a class="button" href="https://www.youtube.com/@gamesplanet13?sub_confirmation=1" target="_blank" onclick="markSubscribed(2)">Subscribe Games Planet 13</a>
-    <div class="status" id="status2"></div>
+<a class="button" href="https://www.youtube.com/@gamesvallah?sub_confirmation=1" target="_blank" rel="noopener" onclick="markSubscribed(3)">Subscribe Games Vallah</a>
+<div class="status" id="status3"></div>
 
-    <a class="button" href="https://www.youtube.com/@gamesvallah?sub_confirmation=1" target="_blank" onclick="markSubscribed(3)">Subscribe Games Vallah</a>
-    <div class="status" id="status3"></div>
-  </div>
-
-  <div id="unlockSection">
+  </div>  <div id="unlockSection" aria-live="polite">
     <p>✅ Thank you for subscribing!</p>
-    <div class="Download Link">https://drive.google.com/file/d/1BmDGv3TU6BXVRq0iG8kXiPatGjZ0NgiS/view?usp=drivesdk</div>
-    <br />
-    
+    <p>You can download/open the file from the button below:</p><!-- Download button that opens the Google Drive link in a new tab -->
+<a id="downloadLink" class="download-button" href="https://drive.google.com/file/d/1BmDGv3TU6BXVRq0iG8kXiPatGjZ0NgiS/view?usp=drivesdk" target="_blank" rel="noopener">Download</a>
 
-  <script>
+<p style="margin-top:12px; font-size:14px; color:#333">(Google Drive link will open in a new tab)</p>
+
+  </div>  <script>
+    // Track which subscribe buttons user clicked (UI-only — cannot verify real subscription)
     let status = [false, false, false];
 
     function markSubscribed(index) {
+      // mark the UI as done for the clicked button
       status[index - 1] = true;
       const suffix = index === 1 ? '1st' : index === 2 ? '2nd' : '3rd';
       document.getElementById(`status${index}`).innerText = `${suffix} done ✅`;
+
+      // If all three have been clicked, show unlock section
       if (status.every(Boolean)) {
         document.getElementById('subscribeSection').style.display = 'none';
         document.getElementById('unlockSection').style.display = 'block';
       }
     }
-  </script>
-</body>
+
+    // Optional: Prevent middle-click / right-click from opening link in background when user expects a new tab
+    document.getElementById('downloadLink').addEventListener('click', function (e) {
+      // nothing special required — link already opens in a new tab via target="_blank"
+    });
+  </script></body>
 </html>
