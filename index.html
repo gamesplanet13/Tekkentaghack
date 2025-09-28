@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscribe to Unlock</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #e6ffe6);
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .button {
+      display: inline-block;
+      margin: 15px;
+      padding: 15px 30px;
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    #unlockSection {
+      margin-top: 40px;
+      display: none;
+    }
+    .coupon-code {
+      font-size: 32px;
+      font-weight: bold;
+      color: #d63384;
+      background-color: #fff0f5;
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 10px;
+      border: 2px dashed #d63384;
+    }
+    .status {
+      margin-top: 5px;
+      color: green;
+      font-weight: bold;
+    }
+    .flash-button, .manual-button {
+      margin: 20px 10px 0;
+      padding: 15px 30px;
+      background-color: #28a745;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .flash-button {
+      animation: flash 1s infinite;
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Subscribe to All 3 Channels to Unlock Your Coupon Code</h1>
+  <div id="subscribeSection">
+    <a class="button" href="https://www.youtube.com/singhtechgaming?sub_confirmation=1" target="_blank" onclick="markSubscribed(1)">Subscribe Singh Tech Gaming</a>
+    <div class="status" id="status1"></div>
+
+    <a class="button" href="https://www.youtube.com/@gamesplanet13?sub_confirmation=1" target="_blank" onclick="markSubscribed(2)">Subscribe Games Planet 13</a>
+    <div class="status" id="status2"></div>
+
+    <a class="button" href="https://www.youtube.com/@gamesvallah?sub_confirmation=1" target="_blank" onclick="markSubscribed(3)">Subscribe Games Vallah</a>
+    <div class="status" id="status3"></div>
+  </div>
+
+  <div id="unlockSection">
+    <p>✅ Thank you for subscribing!</p>
+    <div class="Download Link">https://drive.google.com/file/d/1BmDGv3TU6BXVRq0iG8kXiPatGjZ0NgiS/view?usp=drivesdk</div>
+    <br />
+    
+
+  <script>
+    let status = [false, false, false];
+
+    function markSubscribed(index) {
+      status[index - 1] = true;
+      const suffix = index === 1 ? '1st' : index === 2 ? '2nd' : '3rd';
+      document.getElementById(`status${index}`).innerText = `${suffix} done ✅`;
+      if (status.every(Boolean)) {
+        document.getElementById('subscribeSection').style.display = 'none';
+        document.getElementById('unlockSection').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
